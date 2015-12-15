@@ -5954,7 +5954,7 @@ static CURLcode create_conn(struct Curl_easy *data,
     proxy = detect_proxy(conn);
 
 #ifdef USE_UNIX_SOCKETS
-  if(proxy && data->set.str[STRING_UNIX_SOCKET_PATH]) {
+  if(proxy && data->set.str[STRING_UNIX_SOCKET_PATH] && !data->set.str[STRING_PROXY]) {
     free(proxy);  /* Unix domain sockets cannot be proxied, so disable it */
     proxy = NULL;
   }
